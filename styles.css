@@ -1,0 +1,127 @@
+main {
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+}
+#sobre-mi {
+  background-color: #f4f4f4; /* Gris muy claro */
+}
+/* Nueva clase .container para limitar el ancho y centrar horizontalmente */
+.container {
+  max-width: 1000px; /* Limita el ancho máximo a 1000 píxeles */
+  margin-left: auto; /* Centra el contenedor horizontalmente */
+  margin-right: auto; /* Centra el contenedor horizontalmente */
+}
+body {
+  font-family: "DM Serif Text", "Inter", Arial, sans-serif;
+}
+aquítienes todas las reglas CSS de tu página web, extraídas de la sección <style> del HTML:
+
+/* Asegura que la fuente DM Serif Text se use por defecto, o Inter/Arial/sans-serif como respaldo */ body {
+  font-family: "DM Serif Text", "Inter", Arial, sans-serif;
+}
+
+/* Estilos para la etiqueta main */
+main {
+  background-color: #2c3e50; /* Color de fondo azul oscuro */
+  color: white; /* Color de texto blanco */
+  padding: 20px; /* Relleno de 20 píxeles */
+}
+
+/* Estilos para el menú de navegación */
+nav ul {
+  /* Tailwind ya maneja el display flex y wrap, así que no se necesita aquí.
+     Las siguientes reglas son para los elementos <a> dentro del nav. */
+}
+
+nav ul li a {
+  color: #000000; /* ¡Color de texto azul claro para los enlaces! */
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  padding: 10px; /* Relleno alrededor de los enlaces para separarlos */
+  display: block; /* Para que el padding y el fondo de hover funcionen mejor */
+  border-radius: 8px; /* Bordes redondeados para un mejor aspecto */
+  transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+/* Efecto hover para los enlaces del menú de navegación */
+nav ul li a:hover {
+  background-color: #166534; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para todas las etiquetas section, según la solicitud del usuario */
+section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+
+/* Nuevo estilo para la sección Sobre Mí con un color de fondo diferente */
+#sobre-mi {
+  background-color: #f4f4f4; /* Gris muy claro */
+}
+
+/* Nueva clase .container para limitar el ancho y centrar horizontalmente */
+.container {
+  max-width: 1000px; /* Limita el ancho máximo a 1000 píxeles */
+  margin-left: auto; /* Centra el contenedor horizontalmente */
+  margin-right: auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Estilos específicos para la galería de imágenes */
+/* La clase 'project-card' es ahora el elemento interactivo */
+.project-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    background-color 0.3s ease-in-out; /* Transiciones para efectos hover y color de fondo */
+}
+.project-card:hover {
+  transform: translateY(-5px); /* Pequeño levantamiento al pasar el ratón */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+  background-color: #f5f5f5; /* Fondo gris claro al pasar el cursor */
+}
+
+/* Asegura que el contenido interno de la tarjeta también cambie de color si es necesario */
+.project-card:hover .project-content {
+  background-color: #f5f5f5; /* Coincide con el color de fondo de la tarjeta */
+}
+
+/* Estilos para la sección de cuestionario para unificar con el resto de la página */
+#mi-juego .text-green-800 {
+  color: #166534; /* Color verde oscuro principal del diseño */
+}
+
+#mi-juego .bg-blue-600 {
+  background-color: #16a34a; /* Verde más brillante para botones de acción, acorde con el header */
+}
+
+#mi-juego .hover:bg-blue-700:hover {
+  background-color: #15803d; /* Tono de verde más oscuro al pasar el ratón */
+}
+
+#mi-juego .bg-gray-200 {
+  background-color: #e5e7eb; /* Gris claro para las opciones */
+}
+
+#mi-juego .hover:bg-green-200:hover {
+  background-color: #bbf7d0; /* Verde más claro para las opciones al pasar el ratón */
+}
+
+#mi-juego .text-green-700 {
+  color: #15803d; /* Verde para feedback correcto */
+}
+
+#mi-juego .text-red-700 {
+  color: #dc2626; /* Rojo para feedback incorrecto (manteniendo un color estándar para errores) */
+}
+
+#mi-juego .text-blue-700 {
+  color: #166534; /* Color verde oscuro para la puntuación final */
+}
+
+/* Aplicar la fuente principal a los elementos del quiz */
+#mi-juego h2,
+#mi-juego p,
+#mi-juego button {
+  font-family: "DM Serif Text", "Inter", Arial, sans-serif;
+}

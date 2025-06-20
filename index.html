@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Del Boceto al Espacio | Proyectos Arquitectura</title>
+    <meta
+      name="description"
+      content="Descubre el fascinante proceso creativo y el diseño arquitectónico. Explora innovadores proyectos y transforma tus ideas en espacios. ¡Inspírate aquí!"
+    />
+    <!-- Incluye Tailwind CSS para un diseño responsivo y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Enlace a Google Fonts para 'DM Serif Text' -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Asegura que la fuente DM Serif Text se use por defecto, o Inter/Arial/sans-serif como respaldo */
+      body {
+        font-family: "DM Serif Text", "Inter", Arial, sans-serif;
+      }
+
+      /* Estilos para la etiqueta main */
+      main {
+        background-color: #2c3e50; /* Color de fondo azul oscuro */
+        color: white; /* Color de texto blanco */
+        padding: 20px; /* Relleno de 20 píxeles */
+      }
+
+      /* Estilos para el menú de navegación */
+      nav ul {
+        /* Tailwind ya maneja el display flex y wrap, así que no se necesita aquí.
+           Las siguientes reglas son para los elementos <a> dentro del nav. */
+      }
+
+      nav ul li a {
+        color: #000000; /* ¡Color de texto azul claro para los enlaces! */
+        text-decoration: none; /* Elimina el subrayado de los enlaces */
+        padding: 10px; /* Relleno alrededor de los enlaces para separarlos */
+        display: block; /* Para que el padding y el fondo de hover funcionen mejor */
+        border-radius: 8px; /* Bordes redondeados para un mejor aspecto */
+        transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+      }
+
+      /* Efecto hover para los enlaces del menú de navegación */
+      nav ul li a:hover {
+        background-color: #166534; /* Color de fondo al pasar el mouse */
+      }
+
+      /* Estilos para todas las etiquetas section, según la solicitud del usuario */
+      section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 30px;
+      }
+
+      /* Nuevo estilo para la sección Sobre Mí con un color de fondo diferente */
+      #sobre-mi {
+        background-color: #f4f4f4; /* Gris muy claro */
+      }
+
+      /* Nueva clase .container para limitar el ancho y centrar horizontalmente */
+      .container {
+        max-width: 1000px; /* Limita el ancho máximo a 1000 píxeles */
+        margin-left: auto; /* Centra el contenedor horizontalmente */
+        margin-right: auto; /* Centra el contenedor horizontalmente */
+      }
+
+      /* Estilos específicos para la galería de imágenes */
+      /* La clase 'project-card' es ahora el elemento interactivo */
+      .project-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+          background-color 0.3s ease-in-out; /* Transiciones para efectos hover y color de fondo */
+      }
+      .project-card:hover {
+        transform: translateY(
+          -5px
+        ); /* Pequeño levantamiento al pasar el ratón */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+        background-color: #f5f5f5; /* Fondo gris claro al pasar el cursor */
+      }
+
+      /* Asegura que el contenido interno de la tarjeta también cambie de color si es necesario */
+      .project-card:hover .project-content {
+        background-color: #f5f5f5; /* Coincide con el color de fondo de la tarjeta */
+      }
+
+      /* Estilos para la sección de cuestionario para unificar con el resto de la página */
+      #quiz-arquitectonico .text-green-800 {
+        color: #166534; /* Color verde oscuro principal del diseño */
+      }
+
+      #quiz-arquitectonico .bg-blue-600 {
+        background-color: #16a34a; /* Verde más brillante para botones de acción, acorde con el header */
+      }
+
+      #quiz-arquitectonico .hover:bg-blue-700:hover {
+        background-color: #15803d; /* Tono de verde más oscuro al pasar el ratón */
+      }
+
+      #quiz-arquitectonico .bg-gray-200 {
+        background-color: #e5e7eb; /* Gris claro para las opciones */
+      }
+
+      #quiz-arquitectonico .hover:bg-green-200:hover {
+        background-color: #bbf7d0; /* Verde más claro para las opciones al pasar el ratón */
+      }
+
+      #quiz-arquitectonico .text-green-700 {
+        color: #15803d; /* Verde para feedback correcto */
+      }
+
+      #quiz-arquitectonico .text-red-700 {
+        color: #dc2626; /* Rojo para feedback incorrecto (manteniendo un color estándar para errores) */
+      }
+
+      #quiz-arquitectonico .text-blue-700 {
+        color: #166534; /* Color verde oscuro para la puntuación final */
+      }
+
+      /* Aplicar la fuente principal a los elementos del quiz */
+      #quiz-arquitectonico h2,
+      #quiz-arquitectonico p,
+      #quiz-arquitectonico button {
+        font-family: "DM Serif Text", "Inter", Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Cabecera de la página: Contiene el título principal del sitio -->
+    <!-- Se ha añadido la clase 'container' aquí para aplicar los nuevos estilos -->
+    <header
+      class="container bg-green-800 shadow-sm py-4 px-6 md:px-10 rounded-lg"
+    >
+      <h1 class="text-3xl font-bold text-center text-white">
+        Del Boceto al Espacio: Mi Cuaderno de Obras
+      </h1>
+    </header>
+
+    <!-- Menú de navegación: Permite al usuario saltar a diferentes secciones de la página -->
+    <!-- Se ha añadido la clase 'container' aquí para aplicar los nuevos estilos -->
+    <nav class="container bg-white shadow-sm py-3 px-6 md:px-10 rounded-lg">
+      <!-- Se han eliminado las clases de Tailwind de los <a> para que los estilos CSS personalizados tengan precedencia -->
+      <ul class="flex flex-wrap justify-center gap-4 text-lg">
+        <li>
+          <a href="#inicio">Inicio</a>
+        </li>
+        <li>
+          <a href="#sobre-mi">Sobre Mí</a>
+        </li>
+        <li>
+          <a href="#proyectos">Proyectos</a>
+        </li>
+        <li>
+          <a href="#proceso-creativo">El Proceso Creativo</a>
+        </li>
+        <li>
+          <a href="#quiz-arquitectonico">Cuestionario</a>
+        </li>
+        <li>
+          <a href="#contacto">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Área de contenido principal: Contiene todas las secciones de la página -->
+    <!-- Se ha añadido la clase 'container' aquí para aplicar los nuevos estilos -->
+    <main class="container p-4">
+      <!-- Sección de Inicio -->
+      <!-- Se ha añadido un color de fondo diferente para destacar la sección de inicio -->
+      <section id="inicio" class="bg-green-100 shadow-md rounded-lg">
+        <!-- El encabezado de la sección ahora es azul oscuro y centrado -->
+        <h2 class="text-2xl font-semibold text-[#000000] text-center mb-4">
+          Inicio
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Bienvenidos a "Del Boceto al Espacio: Mi Cuaderno de Obras", un portal
+          diseñado para explorar la profunda conexión entre la visión conceptual
+          y la materialización arquitectónica. Aquí, cada línea trazada, cada
+          idea gestada en papel, se convierte en el cimiento de estructuras que
+          aspiran a tocar el cielo. Este es un espacio para inspirarse,
+          reflexionar y adentrarse en el fascinante viaje de la creación desde
+          su forma más pura hasta su expresión más imponente.
+        </p>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Para estudiantes, maestros y arquitectos, este cuaderno es una ventana
+          a la metodología, los desafíos y las recompensas de transformar
+          bocetos audaces en realidades tangibles. Les invito a recorrer mis
+          proyectos, a entender mi proceso creativo y a descubrir cómo la pasión
+          por el diseño se fusiona con la precisión técnica para dar vida a los
+          espacios que habitamos. Que este recorrido despierte nuevas ideas y
+          fortalezca su compromiso con la excelencia arquitectónica.
+        </p>
+        <img
+          src="https://images.pexels.com/photos/6615239/pexels-photo-6615239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Proceso creativo"
+          class="w-full h-auto object-cover rounded-md shadow-sm"
+        />
+
+        <!-- El contenedor para el botón de dato curioso ha sido eliminado. -->
+      </section>
+
+      <!-- Sección Sobre Mí -->
+      <section id="sobre-mi" class="bg-white shadow-md rounded-lg">
+        <!-- El encabezado de la sección ahora es azul oscuro y centrado -->
+        <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">
+          Sobre Mí
+        </h2>
+        <p class="text-gray-700 leading-relaxed">
+          Contenido de Sobre Mí irá aquí. Aquí podrás conocer mi trayectoria y
+          pasiones.
+        </p>
+        <!-- Botón para mostrar/ocultar el texto "Sobre Mí" -->
+        <div class="flex justify-center mt-6">
+          <button
+            id="toggleAboutMeBtn"
+            class="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Sobre mí
+          </button>
+        </div>
+
+        <!-- Texto expandido de "Sobre Mí" que se mostrará/ocultará -->
+        <div
+          id="aboutMeContent"
+          class="hidden text-gray-700 leading-relaxed mt-4 p-4 border border-gray-200 rounded-md bg-gray-50"
+        >
+          <p class="mb-2">
+            Soy un apasionado arquitecto con más de una década de experiencia en
+            la creación de espacios innovadores y funcionales. Mi enfoque se
+            centra en la integración de diseño estético con soluciones
+            sostenibles y eficientes.
+          </p>
+          <p>
+            Desde mis primeros bocetos, he creído firmemente que la arquitectura
+            es el arte de transformar sueños en estructuras habitables. Cada
+            proyecto es una oportunidad para explorar nuevas ideas y superar los
+            límites de lo convencional, siempre con el objetivo de mejorar la
+            calidad de vida de quienes interactúan con mis diseños.
+          </p>
+        </div>
+      </section>
+
+      <!-- Sección Proyectos: Ahora incluye la galería de imágenes interactiva -->
+      <section id="proyectos" class="bg-white shadow-md rounded-lg">
+        <!-- El encabezado de la sección se mantiene -->
+        <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">
+          Proyectos
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Explora algunos de mis proyectos destacados a continuación: Haz clic
+          en la tarjeta para ver la descripción.
+        </p>
+        <!-- Inicio de la galería de imágenes -->
+        <div class="flex flex-col md:flex-row md:justify-center gap-6">
+          <!-- Primer proyecto interactivo -->
+          <div
+            class="project-card flex-1 rounded-lg overflow-hidden shadow-md cursor-pointer bg-gray-50"
+          >
+            <img
+              src="https://i.imgur.com/XyEO3ct.png"
+              alt="Proyecto Ecológico Urbano"
+              class="w-full h-auto object-cover rounded-md"
+            />
+            <div class="project-content p-4 bg-gray-100">
+              <h3 class="text-xl font-semibold text-green-800 mb-2">
+                Proyecto Ecológico Urbano
+              </h3>
+              <p class="project-description text-center text-gray-700 hidden">
+                Edificio sostenible que integra elementos naturales como techos
+                verdes y materiales de bajo impacto ambiental. Un enfoque
+                consciente hacia la arquitectura del futuro.
+              </p>
+            </div>
+          </div>
+
+          <!-- Segundo proyecto interactivo -->
+          <div
+            class="project-card flex-1 rounded-lg overflow-hidden shadow-md cursor-pointer bg-gray-50"
+          >
+            <img
+              src="https://i.imgur.com/WcZ964z.png"
+              alt="Restauración Histórica en el Centro"
+              class="w-full h-auto object-cover rounded-md"
+            />
+            <div class="project-content p-4 bg-gray-100">
+              <h3 class="text-xl font-semibold text-green-800 mb-2">
+                Restauración Histórica en el Centro
+              </h3>
+              <p class="project-description text-center text-gray-700 hidden">
+                Proyecto de renovación que preserva la riqueza histórica del
+                edificio original, combinando elementos antiguos con un diseño
+                interior contemporáneo y funcional.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tercer proyecto interactivo -->
+          <div
+            class="project-card flex-1 rounded-lg overflow-hidden shadow-md cursor-pointer bg-gray-50"
+          >
+            <img
+              src="https://i.imgur.com/RST0MU8.png"
+              alt="Centro Cultural Armonía Natural"
+              class="w-full h-auto object-cover rounded-md"
+            />
+            <div class="project-content p-4 bg-gray-100">
+              <h3 class="text-xl font-semibold text-green-800 mb-2">
+                Centro Cultural "Armonía Natural"
+              </h3>
+              <p class="project-description text-center text-gray-700 hidden">
+                Este proyecto se inspira en la filosofía de Snøhetta, fusionando
+                líneas limpias y materiales naturales para crear una estructura
+                que se integra armoniosamente con su entorno. Con amplias
+                fachadas de vidrio y techos verdes, busca maximizar la luz
+                natural y ofrecer espacios que conectan directamente con el
+                paisaje circundante. Es una visión de arquitectura que celebra
+                la sostenibilidad y la serenidad.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Fin de la galería de imágenes -->
+      </section>
+
+      <!-- Sección El Proceso Creativo -->
+      <section id="proceso-creativo" class="bg-white shadow-md rounded-lg">
+        <!-- El encabezado de la sección ahora es azul oscuro y centrado -->
+        <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">
+          El Proceso Creativo
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          Contenido de El Proceso Creativo irá aquí. Entiende cómo mis ideas
+          toman forma.
+        </p>
+        <ul class="list-disc list-inside text-[#000000] mb-6">
+          <li>
+            <strong class="font-semibold">Inspiración:</strong> Cómo encuentro
+            la chispa inicial.
+          </li>
+          <li>
+            <strong class="font-semibold">Planificación:</strong> La fase de
+            estructuración y diseño.
+          </li>
+          <li>
+            <strong class="font-semibold">Ejecución:</strong> Llevando el boceto
+            a la realidad.
+          </li>
+          <li>
+            <strong class="font-semibold">Revisión:</strong> El ajuste y la
+            mejora continua.
+          </li>
+        </ul>
+        <img
+          src="https://images.pexels.com/photos/6615239/pexels-photo-6615239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="proceso creativo"
+          class="w-full h-auto object-cover rounded-md shadow-sm"
+        />
+      </section>
+
+      <!-- Nueva Sección: Cuestionario de Arquitectura (Movido aquí) -->
+      <section id="quiz-arquitectonico" class="bg-white shadow-md rounded-lg">
+        <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">
+          Cuestionario de Arquitectura
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Pon a prueba tus conocimientos sobre arquitectura con este
+          mini-cuestionario.
+        </p>
+
+        <div id="quiz-area" class="space-y-6">
+          <div
+            id="question-display"
+            class="bg-gray-100 p-6 rounded-lg shadow-inner"
+          >
+            <p
+              class="text-lg font-medium text-gray-800 mb-4"
+              id="question-text"
+            ></p>
+            <div
+              id="options-container"
+              class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+              <!-- Los botones para las opciones se inyectarán aquí con JavaScript -->
+            </div>
+          </div>
+
+          <div
+            id="feedback-area"
+            class="min-h-[40px] flex items-center justify-center"
+          >
+            <p id="feedback-text" class="text-lg font-semibold"></p>
+          </div>
+
+          <div
+            class="flex justify-between items-center pt-4 border-t border-gray-200 mt-6"
+          >
+            <p class="text-gray-600">
+              Pregunta <span id="question-progress-display"></span>
+            </p>
+            <p class="text-gray-600">
+              Puntuación: <span id="score-display">0</span> /
+              <span id="total-questions"></span>
+            </p>
+            <button
+              id="next-question-btn"
+              class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
+              style="display: none"
+            >
+              Siguiente Pregunta
+            </button>
+            <button
+              id="restart-quiz-btn"
+              class="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+              style="display: none"
+            >
+              Reiniciar Cuestionario
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Contacto -->
+      <section id="contacto" class="bg-white shadow-md rounded-lg">
+        <!-- El encabezado de la sección ahora es azul oscuro y centrado -->
+        <h2 class="text-2xl font-semibold text-green-800 text-center mb-4">
+          Contacto
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-6">
+          Contenido de Contacto irá aquí. ¡Hablemos de tu próximo proyecto!
+        </p>
+        <form class="space-y-4">
+          <div>
+            <label
+              for="nombre"
+              class="block text-gray-700 text-sm font-medium mb-1"
+              >Nombre:</label
+            >
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label
+              for="email"
+              class="block text-gray-700 text-sm font-medium mb-1"
+              >Email:</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div>
+            <label
+              for="mensaje"
+              class="block text-gray-700 text-sm font-medium mb-1"
+              >Mensaje:</label
+            >
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              rows="5"
+              class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-green-800 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Pie de página: Contiene el aviso de copyright -->
+    <!-- Se ha añadido la clase 'container' aquí para aplicar los nuevos estilos -->
+    <footer
+      class="container bg-gray-800 text-white py-4 px-6 md:px-10 mt-8 rounded-lg"
+    >
+      <p class="text-center text-sm">
+        &copy; 2025 Del Boceto al Espacio: Mi Cuaderno de Obras. Todos los
+        derechos reservados.
+      </p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Existing JavaScript for "Sobre Mí" and "Proyectos" ---
+
+        // Get references to HTML elements for the "Sobre Mí" section
+        const toggleAboutMeBtn = document.getElementById("toggleAboutMeBtn");
+        const aboutMeContent = document.getElementById("aboutMeContent");
+
+        // Add an event listener to the "Sobre mí" button to detect clicks
+        if (toggleAboutMeBtn && aboutMeContent) {
+          // Ensure elements exist before adding listener
+          toggleAboutMeBtn.addEventListener("click", () => {
+            // Toggle the 'hidden' class to show or hide the content
+            aboutMeContent.classList.toggle("hidden");
+          });
+        }
+
+        // Logic for project card interactivity
+        document.querySelectorAll(".project-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            // Find the description within the clicked card
+            const description = card.querySelector(".project-description");
+            // If the description exists, toggle its visibility
+            if (description) {
+              description.classList.toggle("hidden");
+            }
+          });
+        });
+
+        // --- New JavaScript for Architectural Quiz ---
+
+        // Quiz data
+        const quizQuestions = [
+          {
+            question: "¿Qué civilización construyó las pirámides de Giza?",
+            options: ["Romanos", "Griegos", "Egipcios", "Mayas"],
+            correctAnswer: 2, // Index of "Egipcios"
+          },
+          {
+            question:
+              "¿Cuál es el orden arquitectónico clásico que se caracteriza por volutas en los capiteles de sus columnas?",
+            options: ["Dórico", "Jónico", "Corintio", "Toscano"],
+            correctAnswer: 1, // Index of "Jónico"
+          },
+          {
+            question:
+              "¿Qué arquitecto es famoso por el concepto de 'menos es más'?",
+            options: [
+              "Frank Lloyd Wright",
+              "Le Corbusier",
+              "Mies van der Rohe",
+              "Zaha Hadid",
+            ],
+            correctAnswer: 2, // Index of "Mies van der Rohe"
+          },
+          {
+            question:
+              "¿Qué material es comúnmente asociado con la arquitectura gótica?",
+            options: ["Concreto", "Acero", "Vidrio", "Piedra y Vitrales"],
+            correctAnswer: 3, // Index of "Piedra y Vitrales"
+          },
+          {
+            question:
+              "¿Cuál de estos es un elemento distintivo de la arquitectura de Antoni Gaudí?",
+            options: [
+              "Líneas rectas y minimalismo",
+              "Formas orgánicas y trencadís",
+              "Fachadas de ladrillo visto",
+              "Grandes cúpulas",
+            ],
+            correctAnswer: 1, // Index of "Formas orgánicas y trencadís"
+          },
+          {
+            question:
+              "¿Qué famoso rascacielos se encuentra en Nueva York y es conocido por su estilo Art Déco?",
+            options: [
+              "Torre Eiffel",
+              "Burj Khalifa",
+              "Empire State Building",
+              "Shanghái Tower",
+            ],
+            correctAnswer: 2, // Empire State Building
+          },
+          {
+            question: "¿Quién diseñó la Casa de la Cascada (Fallingwater)?",
+            options: [
+              "Frank Gehry",
+              "Zaha Hadid",
+              "Frank Lloyd Wright",
+              "I. M. Pei",
+            ],
+            correctAnswer: 2, // Frank Lloyd Wright
+          },
+          {
+            question:
+              "¿Qué ciudad es conocida por su arquitectura modernista y el Parque Güell?",
+            options: ["París", "Roma", "Barcelona", "Londres"],
+            correctAnswer: 2, // Barcelona
+          },
+          {
+            question:
+              "¿Cuál de los siguientes es un tipo de arco característico de la arquitectura islámica?",
+            options: [
+              "Arco de medio punto",
+              "Arco ojival",
+              "Arco de herradura",
+              "Arco conopial",
+            ],
+            correctAnswer: 2, // Arco de herradura
+          },
+          {
+            question:
+              "¿Qué estilo arquitectónico predominó durante el Renacimiento en Italia?",
+            options: [
+              "Gótico",
+              "Barroco",
+              "Clásico (greco-romano)",
+              "Brutalista",
+            ],
+            correctAnswer: 2, // Clásico (greco-romano)
+          },
+          {
+            question:
+              "¿Qué término describe el uso de materiales de construcción locales y métodos de diseño adaptados al clima?",
+            options: [
+              "Arquitectura Futurista",
+              "Arquitectura Vernácula",
+              "Arquitectura Deconstructivista",
+              "Arquitectura Paramétrica",
+            ],
+            correctAnswer: 1, // Arquitectura Vernácula
+          },
+          {
+            question:
+              "¿Cuál es el nombre del arquitecto brasileño famoso por su trabajo en Brasilia y sus curvas orgánicas?",
+            options: [
+              "Oscar Niemeyer",
+              "Paulo Mendes da Rocha",
+              "Lina Bo Bardi",
+              "Roberto Burle Marx",
+            ],
+            correctAnswer: 0, // Oscar Niemeyer
+          },
+          {
+            question:
+              "¿Qué estructura romana antigua se conoce por su impresionante cúpula sin soporte interior?",
+            options: [
+              "Coliseo",
+              "Acueducto de Segovia",
+              "Panteón de Agripa",
+              "Termas de Caracalla",
+            ],
+            correctAnswer: 2, // Panteón de Agripa
+          },
+        ];
+
+        // Quiz DOM elements
+        const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+        const feedbackText = document.getElementById("feedback-text");
+        const scoreDisplay = document.getElementById("score-display");
+        const totalQuestionsDisplay =
+          document.getElementById("total-questions"); // Used for total in score
+        const questionProgressDisplay = document.getElementById(
+          "question-progress-display"
+        ); // New element for progress
+        const nextQuestionBtn = document.getElementById("next-question-btn");
+        const restartQuizBtn = document.getElementById("restart-quiz-btn");
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answerSelected = false; // Flag to prevent multiple selections per question
+
+        /**
+         * Loads and displays the current question and its options.
+         */
+        function loadQuestion() {
+          answerSelected = false; // Reset flag for new question
+          feedbackText.textContent = ""; // Clear feedback
+          feedbackText.className = "text-lg font-semibold"; // Reset feedback styling
+          optionsContainer.innerHTML = ""; // Clear previous options
+          nextQuestionBtn.style.display = "none"; // Hide next button
+
+          if (currentQuestionIndex < quizQuestions.length) {
+            const question = quizQuestions[currentQuestionIndex];
+            questionText.textContent = `Pregunta ${currentQuestionIndex + 1}: ${
+              question.question
+            }`;
+
+            question.options.forEach((option, index) => {
+              const button = document.createElement("button");
+              button.textContent = option;
+              // Tailwind classes for button styling, similar to existing buttons for consistency
+              button.classList.add(
+                "px-4",
+                "py-2",
+                "rounded-md",
+                "font-medium",
+                "text-gray-800",
+                "bg-gray-200",
+                "hover:bg-green-200",
+                "hover:text-green-800",
+                "transition",
+                "duration-200",
+                "ease-in-out",
+                "focus:outline-none",
+                "focus:ring-2",
+                "focus:ring-green-500",
+                "focus:ring-offset-2"
+              );
+              button.onclick = () => selectAnswer(index);
+              optionsContainer.appendChild(button);
+            });
+
+            scoreDisplay.textContent = score;
+            totalQuestionsDisplay.textContent = quizQuestions.length;
+            questionProgressDisplay.textContent = `${
+              currentQuestionIndex + 1
+            } / ${quizQuestions.length}`; // Update progress display
+            restartQuizBtn.style.display = "none"; // Ensure restart button is hidden
+          } else {
+            // Quiz finished
+            questionText.textContent = "¡Cuestionario Completado!";
+            optionsContainer.innerHTML = ""; // Clear options
+            feedbackText.textContent = `Tu puntuación final es: ${score} de ${quizQuestions.length}`;
+            feedbackText.classList.add("text-blue-700"); // Final score color
+            questionProgressDisplay.textContent = `${quizQuestions.length} / ${quizQuestions.length}`; // Show full progress on completion
+            restartQuizBtn.style.display = "block"; // Show restart button
+          }
+        }
+
+        /**
+         * Handles the user's answer selection.
+         * @param {number} selectedIndex - The index of the option selected by the user.
+         */
+        function selectAnswer(selectedIndex) {
+          if (answerSelected) return; // Prevent multiple selections
+
+          answerSelected = true;
+          const question = quizQuestions[currentQuestionIndex];
+          const optionButtons = optionsContainer.querySelectorAll("button");
+
+          // Disable all option buttons and remove hover effects after selection
+          optionButtons.forEach((button) => {
+            button.disabled = true;
+            button.classList.remove(
+              "bg-gray-200", // Eliminar el color de fondo por defecto
+              "text-gray-800", // Eliminar el color de texto por defecto
+              "hover:bg-green-200",
+              "hover:text-green-800"
+            );
+            button.style.cursor = "default";
+          });
+
+          if (selectedIndex === question.correctAnswer) {
+            score++;
+            feedbackText.textContent = "¡Correcto!";
+            feedbackText.classList.add("text-green-700");
+            optionButtons[selectedIndex].classList.add(
+              "bg-green-500",
+              "text-white"
+            ); // Resaltar respuesta correcta en verde
+          } else {
+            feedbackText.textContent =
+              "Incorrecto. La respuesta correcta era: " +
+              question.options[question.correctAnswer];
+            feedbackText.classList.add("text-red-700");
+            optionButtons[selectedIndex].classList.add(
+              "bg-red-500",
+              "text-white"
+            ); // Resaltar respuesta incorrecta del usuario en rojo
+            optionButtons[question.correctAnswer].classList.add(
+              "bg-green-500",
+              "text-white"
+            ); // Resaltar la respuesta correcta en verde
+          }
+
+          scoreDisplay.textContent = score;
+          nextQuestionBtn.style.display = "block"; // Mostrar el botón de siguiente pregunta
+        }
+
+        /**
+         * Moves to the next question or ends the quiz.
+         */
+        function nextQuestion() {
+          currentQuestionIndex++;
+          loadQuestion();
+        }
+
+        /**
+         * Resets the quiz to its initial state.
+         */
+        function resetQuiz() {
+          currentQuestionIndex = 0;
+          score = 0;
+          loadQuestion();
+        }
+
+        // Event Listeners for quiz navigation buttons
+        nextQuestionBtn.addEventListener("click", nextQuestion);
+        restartQuizBtn.addEventListener("click", resetQuiz);
+
+        // Initial load of the quiz when the DOM is fully loaded
+        loadQuestion();
+      });
+    </script>
+  </body>
+</html>
